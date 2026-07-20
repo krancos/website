@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact | Krancos</title>
 <meta name="description" content="Contactez l'équipe Krancos : installation d'une cabine en pharmacie, question patient, partenariat ou presse.">
-<link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -21,27 +20,22 @@
       <h1 class="title--page">Parlons de votre projet</h1>
       <p class="lede">
         Une question sur la cabine, un projet d'installation en officine ou une
-        demande de partenariat ? Écrivez-nous, nous répondons sous 48 heures
-        ouvrées.
+        demande de partenariat ? Contactez-nous.
       </p>
     </div>
   </section>
 
   <section class="section">
-    <div class="shell split">
-      <div>
+    <div class="shell">
+      <div class="contactCTA">
         <h2 class="title--sm">Nous écrire</h2>
-        <p class="lede">
-          Remplissez le formulaire : votre logiciel de messagerie s'ouvre avec
-          un e-mail pré-rempli à destination de notre équipe.
-        </p>
 
         <ul class="featureList">
           <li>
             <span class="check"><i data-icon="mail"></i></span>
             <div>
               <strong>E-mail</strong>
-              <span><a class="link-green" href="mailto:slava@krancos.fr">slava@krancos.fr</a></span>
+              <span><a class="link-accent" href="mailto:kiyan@krancos.fr">kiyan@krancos.fr</a></span>
             </div>
           </li>
           <li>
@@ -54,66 +48,26 @@
           <li>
             <span class="check"><i data-icon="store"></i></span>
             <div>
-              <strong>Vous êtes pharmacien ?</strong>
+              <strong>Vous êtes pharmacien ?</strong>
               <span>
-                Choisissez « Installer une cabine dans ma pharmacie » : nous
-                vous recontactons avec une démo.
+                Indiquez « Programme pilote » : nous vous recontactons pour
+                échanger sur les premières installations.
               </span>
             </div>
           </li>
         </ul>
 
+        <a class="btn btn--primary contactCTA__btn" href="mailto:kiyan@krancos.fr">
+          <i data-icon="mail"></i> kiyan@krancos.fr
+        </a>
+
         <p class="footnote">
-          Krancos est un outil de dépistage et d'orientation. Ce formulaire ne
-          permet pas d'obtenir un avis médical : en cas de lésion inquiétante,
+          Krancos est un outil de dépistage et d'orientation. Un échange par
+          e-mail ne permet pas d'obtenir un avis médical : en cas de lésion inquiétante,
           consultez un médecin ou un dermatologue.
         </p>
       </div>
 
-      <div class="formCard">
-        <form class="form" data-mailto="contact">
-          <div class="formRow">
-            <div class="field">
-              <label for="contact-nom">Nom et prénom</label>
-              <input id="contact-nom" name="nom" type="text" required autocomplete="name">
-            </div>
-            <div class="field">
-              <label for="contact-email">E-mail</label>
-              <input id="contact-email" name="email" type="email" required autocomplete="email" placeholder="vous@exemple.fr">
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="sujet">Sujet</label>
-            <select id="sujet" name="sujet">
-              <option value="demo">Installer une cabine dans ma pharmacie</option>
-              <option value="patient">Question en tant que patient</option>
-              <option value="partenariat">Partenariat / investissement</option>
-              <option value="presse">Presse</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="contact-message">Votre question</label>
-            <textarea id="contact-message" name="message" required placeholder="Décrivez votre demande en quelques lignes."></textarea>
-          </div>
-
-          <div>
-            <button class="btn btn--primary" type="submit">Envoyer le message</button>
-          </div>
-
-          <p class="alert alert--warn" data-mailto-note hidden>
-            Votre logiciel de messagerie s'ouvre avec le message pré-rempli,
-            il ne reste qu'à l'envoyer.
-          </p>
-
-          <p class="field__hint">
-            Ce formulaire ouvre votre messagerie avec un e-mail pré-rempli à
-            destination de slava@krancos.fr. N'y indiquez aucune donnée de santé.
-          </p>
-        </form>
-      </div>
     </div>
   </section>
 

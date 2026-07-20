@@ -1,27 +1,35 @@
 /* ==========================================================================
    Krancos — feuille de styles
-   Palette : blanc + argent/graphite + vert Krancos (#34C759)
+   Palette : blanc + argent/graphite + bleu diagnostic -> cyan
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   Système chromatique : blanc + argent/graphite + vert Krancos.
+   Système chromatique : blanc + argent/graphite + bleu diagnostic.
 
    Trois plans seulement :
      - clair    : blanc, texte encre
      - argent   : #f4f7f9, respiration entre deux blocs
-     - profond  : graphite froid, texte argent, vert utilisable EN TEXTE
+     - profond  : graphite froid bleuté, texte argent
 
-   Le vert #34C759 ne fait que 2,2:1 sur blanc : sur fond clair il reste un
-   aplat. Sur graphite il monte à 8,6:1 et devient enfin du texte.
+   Le dégradé de marque va du cyan au bleu (135deg). Il est identique
+   partout : bouton, numéro d'étape, pastille de fonction. La variante
+   --brand-gradient-deep ne sert qu'au survol.
    -------------------------------------------------------------------------- */
 
 :root {
-  /* --- Marque --- */
-  --krancos-green: #34c759;
-  --krancos-green-bright: #4ad46c;
-  --krancos-green-dark: #23a344;
-  --krancos-green-tint: #eaf9ee;
-  --accent: #0a7f4b;              /* émeraude, 5,06:1 sur blanc */
+  /* --- Marque : bleu diagnostic -> cyan ---
+     Reprend l'éclairage LED de la cabine. Les teintes vives servent aux
+     aplats et aux dégradés ; --brand-ink est la version texte sur blanc. */
+  --brand: #0088ff;
+  --brand-bright: #00c0e8;
+  --brand-deep: #0b6fd0;
+  --brand-ink: #0a63a8;
+  --brand-tint: #e9f4ff;   /* pastilles, icônes */
+  --brand-tint-strong: #cde6ff;
+
+  /* Le dégradé signature : balayage bleu -> cyan. */
+  --brand-gradient: linear-gradient(135deg, #00c0e8 0%, #0088ff 100%);
+  --brand-gradient-deep: linear-gradient(135deg, #009fc4 0%, #0b7ae6 100%);
 
   /* --- Plan clair --- */
   --white: #ffffff;
@@ -41,7 +49,7 @@
   --silver-line-strong: rgba(195, 206, 215, 0.26);
 
   /* --- Dégradés : lueur froide + filet métallique --- */
-  --bloom: radial-gradient(115% 85% at 50% -12%, #1d2932 0%, #0b1014 62%);
+  --bloom: radial-gradient(115% 85% at 50% -12%, #10283c 0%, #0a0f14 62%);
   --sheen: linear-gradient(90deg, transparent, rgba(234,240,244,.5), transparent);
   --chrome: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
 
@@ -186,7 +194,7 @@ select {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink);
-  background: var(--krancos-green-tint);
+  background: var(--brand-tint);
   border-radius: var(--radius-pill);
   padding: 6px 14px;
   margin-bottom: 20px;
@@ -207,7 +215,7 @@ select {
   color: var(--ink-muted);
 }
 
-.link-green {
+.link-accent {
   color: var(--ink);
   font-weight: 600;
 }
@@ -248,12 +256,12 @@ select {
 }
 
 .btn--primary {
-  background: var(--krancos-green);
-  color: var(--ink);
+  background: var(--brand-gradient);
+  color: var(--white);
 }
 
 .btn--primary:hover {
-  background: var(--krancos-green-dark);
+  background: var(--brand-gradient-deep);
 }
 
 .btn--ghost {
@@ -263,20 +271,20 @@ select {
 }
 
 .btn--ghost:hover {
-  border-color: var(--krancos-green);
+  border-color: var(--brand);
   color: var(--ink);
 }
 
 .btn--onDark {
-  background: var(--krancos-green);
-  color: var(--deep);
+  background: var(--brand-gradient);
+  color: var(--white);
 }
 
 .btn--onDark:hover {
-  background: var(--krancos-green-bright);
+  background: var(--brand-gradient-deep);
 }
 
-/* Bouton secondaire posé sur l'aplat vert : texte encre, pas blanc. */
+/* Bouton secondaire posé sur le graphite. */
 .btn--outlineLight {
   background: transparent;
   color: var(--silver-bright);
@@ -319,11 +327,11 @@ select {
   margin-right: auto;
 }
 
+/* Marque circulaire : pas de rognage carré, l'image est contenue entière. */
 .nav__logo {
   width: 34px;
   height: 34px;
-  border-radius: 9px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .nav__links {
@@ -352,7 +360,7 @@ select {
 
 .nav__link[aria-current="page"] {
   color: var(--ink);
-  background: var(--krancos-green-tint);
+  background: var(--brand-tint);
 }
 
 .nav__cta {
@@ -470,6 +478,18 @@ select {
   margin-top: 36px;
 }
 
+/* Mention de statut sous le hero : le dispositif n'est pas encore
+   commercialisé, la page ne doit pas laisser croire l'inverse. */
+.status {
+  margin-top: 28px;
+  padding-left: 13px;
+  border-left: 2px solid var(--brand);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  max-width: 52ch;
+}
+
 .hero__points {
   display: flex;
   flex-wrap: wrap;
@@ -511,7 +531,7 @@ select {
   width: 78%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(126, 158, 178, 0.20), transparent 62%);
+  background: radial-gradient(circle, rgba(0, 150, 220, 0.22), transparent 62%);
   filter: blur(26px);
 }
 
@@ -539,7 +559,7 @@ select {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--krancos-green);
+  background: var(--brand);
   flex: none;
 }
 
@@ -603,7 +623,7 @@ select {
 }
 
 .card:hover {
-  border-color: rgba(52, 199, 89, 0.45);
+  border-color: rgba(0, 136, 255, 0.45);
   transform: translateY(-2px);
   box-shadow: var(--shadow);
 }
@@ -623,7 +643,7 @@ select {
   border-radius: 13px;
   display: grid;
   place-items: center;
-  background: var(--krancos-green-tint);
+  background: var(--brand-tint);
   color: var(--ink);
   margin-bottom: 18px;
 }
@@ -694,7 +714,7 @@ select {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--krancos-green);
+  background: var(--brand-gradient);
   color: var(--white);
   font-size: 0.9rem;
   font-weight: 600;
@@ -776,7 +796,7 @@ select {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--krancos-green-tint);
+  background: var(--brand-tint);
   color: var(--ink);
   display: grid;
   place-items: center;
@@ -874,54 +894,9 @@ select {
    Formulaires
    ========================================================================== */
 
-.form {
-  display: grid;
-  gap: 18px;
-}
-
-.field {
-  display: grid;
-  gap: 7px;
-}
-
-.field label {
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.field input,
-.field textarea,
-.field select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: var(--white);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.field input:focus,
-.field textarea:focus,
-.field select:focus {
-  outline: none;
-  border-color: var(--krancos-green);
-  box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.16);
-}
-
-.field textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
 .field__hint {
   font-size: 0.82rem;
   color: var(--ink-muted);
-}
-
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
 }
 
 @media (max-width: 620px) {
@@ -930,24 +905,10 @@ select {
   }
 }
 
-.formCard {
-  background: var(--white);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: clamp(26px, 4vw, 40px);
-  box-shadow: var(--shadow);
-}
-
 .alert {
   padding: 13px 16px;
   border-radius: var(--radius-sm);
   font-size: 0.93rem;
-}
-
-.alert--ok {
-  background: var(--krancos-green-tint);
-  color: var(--ink);
-  border: 1px solid var(--krancos-green-tint-strong);
 }
 
 .alert--warn {
@@ -985,8 +946,8 @@ select {
   margin: 0 auto 24px;
   border-radius: 50%;
   overflow: hidden;
-  background: var(--krancos-green-tint);
-  border: 1px solid rgba(52, 199, 89, 0.3);
+  background: var(--brand-tint);
+  border: 1px solid rgba(0, 136, 255, 0.3);
   display: grid;
   place-items: center;
 }
@@ -1001,7 +962,7 @@ select {
   font-size: 1.45rem;
   font-weight: 650;
   letter-spacing: -0.025em;
-  color: var(--accent);
+  color: var(--brand-ink);
 }
 
 /* Fonction en pastille verte : texte encre sur aplat (9,5:1). */
@@ -1010,8 +971,8 @@ select {
   margin-top: 12px;
   padding: 6px 18px;
   border-radius: var(--radius-pill);
-  background: var(--krancos-green);
-  color: var(--ink);
+  background: var(--brand-gradient);
+  color: var(--white);
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1043,7 +1004,7 @@ select {
 
 /* Formation : icône mise en avant dans le vert d'accent. */
 .member__creds .is-edu svg {
-  color: var(--accent);
+  color: var(--brand-ink);
 }
 
 .member__creds sup {
@@ -1104,7 +1065,7 @@ select {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--krancos-green);
+  background: var(--brand);
   margin-top: 11px;
 }
 
@@ -1161,10 +1122,6 @@ select {
   margin-bottom: 16px;
 }
 
-.footer__colTitle--spaced {
-  margin-top: 28px;
-}
-
 .footer__list {
   list-style: none;
   margin: 0;
@@ -1181,28 +1138,6 @@ select {
 
 .footer__list a:hover {
   color: var(--ink);
-}
-
-.newsletter {
-  display: flex;
-  gap: 8px;
-  margin-top: 14px;
-  max-width: 360px;
-}
-
-.newsletter input {
-  flex: 1;
-  min-width: 0;
-  padding: 11px 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  background: var(--white);
-}
-
-.newsletter input:focus {
-  outline: none;
-  border-color: var(--krancos-green);
-  box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.16);
 }
 
 .footer__bottom {
@@ -1247,7 +1182,7 @@ select {
 
 .socials a:hover {
   color: var(--ink);
-  border-color: var(--krancos-green);
+  border-color: var(--brand);
 }
 
 /* ==========================================================================
@@ -1271,7 +1206,7 @@ select {
   left: 50%;
   transform: translate(-50%, -120%);
   z-index: 100;
-  background: var(--krancos-green);
+  background: var(--brand);
   color: var(--white);
   padding: 10px 18px;
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
@@ -1341,12 +1276,12 @@ select {
 
 /* Le vert devient enfin du texte : 8,6:1 sur graphite. */
 .section--dark .eyebrow {
-  color: var(--krancos-green);
-  background: rgba(52, 199, 89, 0.12);
+  color: var(--brand);
+  background: rgba(0, 136, 255, 0.12);
 }
 
-.section--dark .link-green {
-  color: var(--krancos-green);
+.section--dark .link-accent {
+  color: var(--brand);
 }
 
 /* --- Surfaces surélevées --- */
@@ -1362,7 +1297,7 @@ select {
 }
 
 .section--dark .card:hover {
-  border-color: rgba(52, 199, 89, 0.45);
+  border-color: rgba(0, 136, 255, 0.45);
   box-shadow: 0 16px 40px -20px rgba(0, 0, 0, 0.8);
 }
 
@@ -1388,13 +1323,13 @@ select {
 
 .section--dark .icon,
 .section--dark .check {
-  background: rgba(52, 199, 89, 0.14);
-  color: var(--krancos-green);
+  background: rgba(0, 136, 255, 0.14);
+  color: var(--brand);
 }
 
 .section--dark .step__num {
-  background: var(--krancos-green);
-  color: var(--deep);
+  background: var(--brand-gradient);
+  color: var(--white);
 }
 
 .section--dark .featureList strong {
@@ -1410,16 +1345,8 @@ select {
 }
 
 .section--dark .btn--ghost:hover {
-  border-color: var(--krancos-green);
-  color: var(--krancos-green);
-}
-
-.section--dark .field input,
-.section--dark .field textarea,
-.section--dark .field select {
-  background: rgba(0, 0, 0, 0.25);
-  border-color: var(--silver-line-strong);
-  color: var(--silver-bright);
+  border-color: var(--brand);
+  color: var(--brand);
 }
 
 /* --- Séparateur métallique autonome --- */
@@ -1434,4 +1361,23 @@ select {
     var(--line),
     transparent
   );
+}
+
+/* ==========================================================================
+   Appel au contact (remplace les anciens formulaires)
+   ========================================================================== */
+
+.contactCTA {
+  max-width: 640px;
+}
+
+.contactCTA__btn {
+  margin-top: 28px;
+  font-size: 1.02rem;
+  padding: 15px 28px;
+}
+
+.contactCTA .field__hint,
+.contactCTA__btn + .footnote {
+  margin-top: 18px;
 }

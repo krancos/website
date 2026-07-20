@@ -9,7 +9,11 @@
 (function () {
   "use strict";
 
-  var CONTACT_EMAIL = "slava@krancos.fr";
+  var CONTACT_EMAIL = "kiyan@krancos.fr";
+
+  /* Source de vérité unique pour le logo : nav, pied de page et favicon
+     lisent tous cette constante. Pour changer de logo, une seule ligne. */
+  var LOGO = "assets/logo/logo_1.png";
 
   /* ---------------------------------------------------------------- Icônes */
 
@@ -157,7 +161,7 @@
       '<header class="nav">' +
       '<div class="shell nav__inner">' +
       '<a class="nav__brand" href="index.html" aria-label="Krancos, accueil">' +
-      '<img class="nav__logo" src="assets/logo.png" alt="" width="34" height="34">' +
+      '<img class="nav__logo" src="' + LOGO + '" alt="" width="34" height="34">' +
       "Krancos</a>" +
       '<button class="nav__toggle" type="button" aria-expanded="false" ' +
       'aria-controls="nav-links" aria-label="Ouvrir le menu">' +
@@ -203,25 +207,16 @@
       // Colonne marque
       "<div>" +
       '<div class="footer__brand">' +
-      '<img class="nav__logo" src="assets/logo.png" alt="" width="34" height="34">' +
+      '<img class="nav__logo" src="' + LOGO + '" alt="" width="34" height="34">' +
       "Krancos</div>" +
       '<p class="footer__blurb">Le dépistage précoce du cancer de la peau, ' +
       "rendu accessible dans chaque pharmacie de quartier.</p>" +
-      '<p class="footer__colTitle footer__colTitle--spaced">Newsletter</p>' +
-      '<form class="newsletter" data-mailto="newsletter">' +
-      '<label class="sr-only" for="newsletter-email">Votre adresse e-mail</label>' +
-      '<input id="newsletter-email" name="email" type="email" required ' +
-      'placeholder="vous@exemple.fr">' +
-      '<button class="btn btn--primary" type="submit" ' +
-      'aria-label="S\'inscrire à la newsletter"><i data-icon="arrow"></i></button>' +
-      "</form>" +
       "</div>" +
       // Produit
       "<div><p class=\"footer__colTitle\">Produit</p><ul class=\"footer__list\">" +
       '<li><a href="index.html#solution">La solution</a></li>' +
       '<li><a href="index.html#fonctionnement">Comment ça marche</a></li>' +
       '<li><a href="index.html#technologie">Technologie</a></li>' +
-      '<li><a href="index.html#confiance">Conformité</a></li>' +
       "</ul></div>" +
       // Société
       "<div><p class=\"footer__colTitle\">Société</p><ul class=\"footer__list\">" +
@@ -248,7 +243,7 @@
       '<div class="footer__bottom">' +
       "<p>© " +
       new Date().getFullYear() +
-      " Krancos Medical Technology</p>" +
+      " Krancos </p>" +
       '<ul class="footer__legal">' +
       '<li><a href="mentions-legales.html">Mentions légales</a></li>' +
       '<li><a href="confidentialite.html">Politique de confidentialité</a></li>' +
@@ -258,89 +253,16 @@
     );
   }
 
-  /* ----------------------------------------------- Formulaires (mailto uniquement) */
-
-  var LABELS = {
-    nom: "Nom",
-    email: "E-mail",
-    pharmacie: "Pharmacie",
-    ville: "Ville / code postal",
-    sujet: "Sujet",
-    message: "Message",
-  };
-
-  var SUBJECTS = {
-    demo: "Demande de démo",
-    newsletter: "Inscription à la newsletter",
-    contact: "Message depuis le site",
-  };
-
-  /**
-   * Construit un e-mail pré-rempli et ouvre le client de messagerie.
-   * Le site étant 100 % statique, aucun envoi serveur n'est possible :
-   * c'est le client mail du visiteur qui envoie le message.
-   */
-  function wireMailtoForms() {
-    var forms = document.querySelectorAll("[data-mailto]");
-
-    Array.prototype.forEach.call(forms, function (form) {
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        if (!form.reportValidity()) return;
-
-        var kind = form.getAttribute("data-mailto");
-        var data = new FormData(form);
-        var lines = [];
-
-        data.forEach(function (value, key) {
-          value = String(value).trim();
-          if (!value) return;
-          var label = LABELS[key] || key;
-          // Le message passe en dernier, sur plusieurs lignes.
-          if (key === "message") return;
-          lines.push(label + " : " + value);
-        });
-
-        var message = String(data.get("message") || "").trim();
-        if (message) lines.push("", message);
-
-        var subject = SUBJECTS[kind] || SUBJECTS.contact;
-        var sujetChoisi = data.get("sujet");
-        if (kind === "contact" && sujetChoisi) {
-          subject = "Krancos : " + sujetChoisi;
-        } else if (kind === "demo") {
-          var pharmacie = data.get("pharmacie");
-          subject = "Demande de démo" + (pharmacie ? " : " + pharmacie : "");
-        }
-
-        window.location.href =
-          "mailto:" +
-          CONTACT_EMAIL +
-          "?subject=" +
-          encodeURIComponent(subject) +
-          "&body=" +
-          encodeURIComponent(lines.join("\n"));
-
-        var note = form.querySelector("[data-mailto-note]");
-        if (note) note.hidden = false;
-      });
-    });
-  }
-
-  /* ------------------------------------------- Pré-sélection du sujet (contact) */
-
-  function presetSubject() {
-    var select = document.getElementById("sujet");
-    if (!select) return;
-    var match = window.location.search.match(/[?&]sujet=([^&]+)/);
-    if (!match) return;
-    var wanted = decodeURIComponent(match[1]);
-    for (var i = 0; i < select.options.length; i++) {
-      if (select.options[i].value === wanted) {
-        select.selectedIndex = i;
-        return;
-      }
+  /** Pose le favicon à partir de LOGO, pour ne pas répéter le chemin
+      dans le <head> de chaque page. */
+  function setFavicon() {
+    var link = document.querySelector('link[rel="icon"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
     }
+    link.href = LOGO;
   }
 
   /* -------------------------------------------------------------- Démarrage */
@@ -352,10 +274,9 @@
     if (navSlot) navSlot.outerHTML = buildNav();
     if (footerSlot) footerSlot.outerHTML = buildFooter();
 
+    setFavicon();
     renderIcons(document);
     wireNav();
-    wireMailtoForms();
-    presetSubject();
   }
 
   if (document.readyState === "loading") {
