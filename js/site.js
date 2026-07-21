@@ -13,7 +13,7 @@
 
   /* Source de vérité unique pour le logo : nav, pied de page et favicon
      lisent tous cette constante. Pour changer de logo, une seule ligne. */
-  var LOGO = "assets/logo/logo_1.png";
+  var LOGO = "assets/logo/logo_0.png";
 
   /* ---------------------------------------------------------------- Icônes */
 
