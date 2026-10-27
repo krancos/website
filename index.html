@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Krancos : dépistage du cancer de la peau par IA en pharmacie</title>
+<title>Krancos : dépistage du cancer de la peau par IA</title>
 <meta name="description" content="Krancos conçoit des cabines de dépistage du cancer de la peau assistées par IA, installées en pharmacie. Un scan cutané sans rendez-vous, un rapport en quelques minutes.">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -22,21 +22,21 @@
 
         <h1 class="hero__title">
           Le dépistage précoce du cancer de la peau,
-          <span>dans chaque pharmacie de quartier.</span>
+          <span>près de chez vous.</span>
         </h1>
 
         <p class="hero__sub">
           Krancos développe une cabine d'imagerie en libre-service destinée
-          aux pharmacies : le patient entre, la cabine scanne sa peau, l'IA
-          analyse les lésions. Sans rendez-vous, en quelques minutes.
+          aux pharmacies, centres de santé et cabinets de dermatologie : le patient
+          entre, la cabine scanne sa peau, l'IA analyse les lésions. Sans rendez-vous, en quelques minutes.
         </p>
 
         <div class="hero__actions">
           <a class="btn btn--primary" href="contact.html?sujet=patient">
             <i data-icon="mail"></i> Être informé du déploiement
           </a>
-          <a class="btn btn--ghost" href="#pharmacies">
-            Pour les pharmacies <i data-icon="arrow"></i>
+          <a class="btn btn--ghost" href="#professionnels">
+            Pour les professionnels de santé <i data-icon="arrow"></i>
           </a>
         </div>
 
@@ -56,6 +56,24 @@
           <span><strong>Scan corps entier</strong></span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================= Vidéo ============================= -->
+  <section class="section section--alt" id="video">
+    <div class="shell">
+      <div class="section__head section__head--center">
+        <span class="eyebrow">En vidéo</span>
+        <h2>Derma Cabin en 70 secondes.</h2>
+      </div>
+      <figure class="demoVideo">
+        <video controls preload="none" playsinline
+               poster="assets/demo-poster.jpg"
+               aria-label="Vidéo de présentation de la cabine Krancos Derma Cabin">
+          <source src="assets/demo.mp4" type="video/mp4">
+          Votre navigateur ne peut pas lire cette vidéo.
+        </video>
+      </figure>
     </div>
   </section>
 
@@ -262,11 +280,11 @@
     </div>
   </section>
 
-  <!-- ======================= Pour les pharmacies ======================= -->
-  <section class="section" id="pharmacies">
+  <!-- ==================== Pour les professionnels de santé ==================== -->
+  <section class="section" id="professionnels">
     <div class="shell">
       <div class="section__head">
-        <span class="eyebrow">Pour les pharmacies</span>
+        <span class="eyebrow">Pour les professionnels de santé</span>
         <h2>Un service de santé publique qui vous distingue.</h2>
         <p class="lede">
           Nous recrutons les premières officines pilotes. La cabine est conçue
@@ -325,18 +343,54 @@
         </article>
       </div>
 
+      <div class="section__head" id="lieux">
+        <h2 class="title--sm">Où installer une cabine ?</h2>
+        <p class="lede">
+          La pharmacie est notre premier terrain de déploiement, mais la cabine
+          a vocation à rejoindre tout lieu de santé de proximité.
+        </p>
+      </div>
+
+      <div class="grid grid--3" style="margin-bottom:48px">
+        <article class="card">
+          <div class="icon"><i data-icon="store"></i></div>
+          <h3 class="card__title">Pharmacies</h3>
+          <p class="card__body">
+            Premier lieu de santé accessible sans rendez-vous, au cœur des
+            quartiers et des zones rurales.
+          </p>
+        </article>
+        <article class="card">
+          <div class="icon"><i data-icon="users"></i></div>
+          <h3 class="card__title">Centres de santé</h3>
+          <p class="card__body">
+            Centres de santé et structures pluriprofessionnelles : un dépistage
+            en amont de la consultation, au service de la patientèle.
+          </p>
+        </article>
+        <article class="card">
+          <div class="icon"><i data-icon="stethoscope"></i></div>
+          <h3 class="card__title">Cabinets de dermatologie</h3>
+          <p class="card__body">
+            Une cartographie et un suivi des lésions qui préparent la
+            consultation et libèrent du temps médical.
+          </p>
+        </article>
+      </div>
+
       <div class="contactCTA" id="demo">
         <h2 class="title--sm">Rejoindre le programme pilote</h2>
         <p class="lede">
-          Dites-nous où vous exercez et nous vous recontactons pour échanger sur
-          le programme pilote, les conditions d'installation envisagées et le
-          calendrier de déploiement dans votre région.
+          Pharmacie, centre de santé ou cabinet de dermatologie : dites-nous où
+          vous exercez et nous vous recontactons pour échanger sur le programme
+          pilote, les conditions d'installation envisagées et le calendrier de
+          déploiement dans votre région.
         </p>
         <a class="btn btn--primary contactCTA__btn" href="mailto:kiyan@krancos.fr?subject=Programme%20pilote">
           <i data-icon="mail"></i> kiyan@krancos.fr
         </a>
         <p class="field__hint">
-          Indiquez votre pharmacie et votre ville dans le message. N'y faites
+          Indiquez votre structure et votre ville dans le message. N'y faites
           figurer aucune donnée de santé.
         </p>
       </div>

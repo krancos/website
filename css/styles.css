@@ -682,6 +682,23 @@ select {
    Étapes
    ========================================================================== */
 
+.demoVideo {
+  max-width: 880px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #f4f7fb;
+}
+
+.demoVideo video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1696 / 960;
+  border: 0;
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

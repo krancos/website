@@ -126,7 +126,7 @@
     { href: "index.html#solution", label: "La solution" },
     { href: "index.html#fonctionnement", label: "Comment ça marche" },
     { href: "index.html#technologie", label: "Technologie" },
-    { href: "index.html#pharmacies", label: "Pharmacies" },
+    { href: "index.html#professionnels", label: "Professionnels" },
     { href: "equipe.html", label: "Équipe" },
     { href: "contact.html", label: "Contact" },
   ];
@@ -222,7 +222,7 @@
       "<div><p class=\"footer__colTitle\">Société</p><ul class=\"footer__list\">" +
       '<li><a href="equipe.html">Équipe</a></li>' +
       '<li><a href="contact.html">Contact</a></li>' +
-      '<li><a href="index.html#pharmacies">Pour les pharmacies</a></li>' +
+      '<li><a href="index.html#professionnels">Pour les professionnels de santé</a></li>' +
       "</ul></div>" +
       // Contact
       "<div><p class=\"footer__colTitle\">Nous écrire</p><ul class=\"footer__list\">" +
